@@ -1,0 +1,28 @@
+.MMM-MovieInfo .wrapper{
+    width:185px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+}
+
+.MMM-MovieInfo .poster {
+    -webkit-filter: grayscale(100%);
+    margin-bottom: 5px;
+}
+
+.MMM-MovieInfo .badge {
+    background-color: #FFF;
+    color: #000;
+    border-radius: 3px;
+    padding: 0px 2px;
+    margin: 2px;
+}
+
+.MMM-MovieInfo .float-left {
+    float: left;
+}
+
+.MMM-MovieInfo .plot {
+    width: 185px;
+    word-wrap: break-word;
+}

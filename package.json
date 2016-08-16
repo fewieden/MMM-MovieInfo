@@ -1,0 +1,22 @@
+{
+  "name": "mmm-movieinfo",
+  "version": "1.0.0",
+  "description": "Upcoming Movie Info Module for MagicMirror2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fewieden/MMM-MovieInfo.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "upcoming movies"
+  ],
+  "author": "fewieden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fewieden/MMM-MovieInfo/issues"
+  },
+  "homepage": "https://github.com/fewieden/MMM-MovieInfo#readme",
+  "dependencies": {
+    "request": "^2.74.0"
+  }
+}
