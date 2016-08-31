@@ -32,3 +32,7 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
 | `api_key` | `false` | Get a free api_key [here](https://www.themoviedb.org/faq/api) |
 | `updateInterval` | `10800000` (3 hours) | How often new data should be fetched. (Changes only once per day) |
 | `rotateInterval` | `180000` (3 mins) | How fast should be rotated between movies |
+| `genre` | `true` | Display genres of movies. |
+| `rating` | `true` | Display rating of movies. |
+| `plot` | `true` | Display plot of movies. |
+| `useLanguage` | `false` | Use language from config instead of default english. WARNING: This can have missing data from api. |

@@ -34,7 +34,11 @@ module.exports = NodeHelper.create({
 		var start = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 		var end = (date.getMonth() === 11 ? date.getFullYear() + 1 : date.getFullYear()) + '-' + ('0' + (date.getMonth() + 2 % 12)).slice(-2) + '-01';
 		var options = {
-			url: 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=' + start + '&primary_release_date.lte=' + end + '&api_key=' + this.config.api_key
+			url: 'https://api.themoviedb.org/3/discover/movie?' +
+                'primary_release_date.gte=' + start +
+                '&primary_release_date.lte=' + end +
+                '&api_key=' + this.config.api_key +
+                '&language=' + (this.config.language ? this.config.language : 'en')
 		};
         request(options, (error, response, body) => {
             if (response.statusCode === 200) {
