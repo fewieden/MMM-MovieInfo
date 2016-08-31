@@ -44,7 +44,7 @@ Module.register("MMM-MovieInfo",{
             10752: this.translate("WAR"),
             37: this.translate("WESTERN")
 	    };
-        if(this.useLanguage){
+        if(this.config.useLanguage){
             this.config.language = config.language;
         }
 		this.sendSocketNotification('CONFIG', this.config);
