@@ -7,6 +7,7 @@
  */
 
 const request = require('request');
+const moment = require('moment');
 const NodeHelper = require('node_helper');
 
 module.exports = NodeHelper.create({
@@ -30,9 +31,9 @@ module.exports = NodeHelper.create({
 	 * Request data from the supplied URL and broadcast it to the MagicMirror module if it's received.
 	 */
     getData: function() {
-		var date = new Date();
-		var start = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-		var end = (date.getMonth() === 11 ? date.getFullYear() + 1 : date.getFullYear()) + '-' + ('0' + (date.getMonth() + 2 % 12)).slice(-2) + '-01';
+        var start = moment().format("YYYY-MM-DD");
+        var end = moment().add(1, "months").format("YYYY-MM-DD");
+
 		var options = {
 			url: 'https://api.themoviedb.org/3/discover/movie?' +
                 'primary_release_date.gte=' + start +
