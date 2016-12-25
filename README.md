@@ -9,6 +9,7 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
   * An installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
   * npm
   * [request](https://www.npmjs.com/package/request)
+  * [moment](https://www.npmjs.com/package/moment)
 
 ## Installation
  1. Clone this repo into `~/MagicMirror/modules` directory.
