@@ -10,6 +10,7 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
   * npm
   * [request](https://www.npmjs.com/package/request)
   * [moment](https://www.npmjs.com/package/moment)
+  * [Datejs](https://www.npmjs.com/package/datejs)
 
 ## Installation
  1. Clone this repo into `~/MagicMirror/modules` directory.
@@ -28,12 +29,134 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
  4. Run command `npm install` in `~/MagicMirror/modules/MMM-MovieInfo` directory.
 
 ## Config Options
-| **Option** | **Default** | **Description** |
-| --- | --- | --- |
-| `api_key` | `false` | Get a free api_key [here](https://www.themoviedb.org/faq/api) |
-| `updateInterval` | `10800000` (3 hours) | How often new data should be fetched. (Changes only once per day) |
-| `rotateInterval` | `180000` (3 mins) | How fast should be rotated between movies |
-| `genre` | `true` | Display genres of movies. |
-| `rating` | `true` | Display rating of movies. |
-| `plot` | `true` | Display plot of movies. |
-| `useLanguage` | `false` | Use language from config instead of default english. WARNING: This can have missing data from api. |
+
+| **Option**        | **Default**               | **Description**                                                                                     |
+| ----------------- | ------------------------- | --------------------------------------------------------------------------------------------------- |
+| `api_key`         | `false`                   | Get a free api_key [here](https://www.themoviedb.org/faq/api)                                       |
+| `discover`        | check below for examples  | Check the docs [here](https://www.themoviedb.org/documentation/api/discover) for more Info          |
+| `updateInterval`  | `10800000` (3 hours)      | How often new data should be fetched. (Changes only once per day)                                   |
+| `rotateInterval`  | `180000` (3 mins)         | How fast should be rotated between movies                                                           |
+| `genre`           | `true`                    | Display genres of movies.                                                                           |
+| `rating`          | `true`                    | Display rating of movies.                                                                           |
+| `plot`            | `true`                    | Display plot of movies.                                                                             |
+| `useLanguage`     | `false`                   | Use language from config instead of default english. WARNING: This can have missing data from api.  |
+
+### Discover Configuration Examples
+
+Place the `discover` object in your config.
+
+#### What movies are in theatres?
+
+```javascript
+discover: {
+    "primary_release_date.gte": "now",
+    "primary_release_date.lte": "next month"
+}
+```
+
+You can also explicitly set the date
+
+```javascript
+discover: {
+    "primary_release_date.gte": "2017-02-16",
+    "primary_release_date.lte": "2017-03-16"
+}
+```
+
+Check the [docs for Datejs](https://github.com/datejs/Datejs) to check what kind of time like queries you can use
+
+#### What are the most popular movies?
+
+```javascript
+discover: {
+    "sort_by": "popularity.desc"
+}
+```
+
+#### What are the highest rated movies rated R?
+
+```javascript
+discover: {
+    "certification_country": "US",
+    "certification": "R",
+    "sort_by": "vote_average.desc"
+}
+```
+
+#### What are the most popular kids movies?
+
+```javascript
+discover: {
+    "certification_country": "US",
+    "certification.lte": "G",
+    "sort_by": "popularity.desc"
+}
+```
+
+#### What is are the best movies from 2010?
+
+```javascript
+discover: {
+    "primary_release_year": "2010",
+    "sort_by": "vote_average.desc"
+}
+```
+
+#### What are the highest rated science fiction movies that Tom Cruise has been in?
+
+```javascript
+discover: {
+    "with_genres": "878",
+    "with_cast": "500",
+    "sort_by": "vote_average.desc"
+}
+```
+
+#### What are the Will Ferrell's highest grossing comedies?
+
+```javascript
+discover: {
+    "with_genres": "35",
+    "with_cast": "23659",
+    "sort_by": "revenue.desc"
+}
+```
+
+#### Have Brad Pitt and Edward Norton ever been in a movie together?
+
+```javascript
+discover: {
+    "with_people": "287,819",
+    "sort_by": "vote_average.desc"
+}
+```
+
+#### Has David Fincher ever worked with Rooney Mara?
+
+```javascript
+discover: {
+    "with_people": "108916,7467",
+    "sort_by": "popularity.desc"
+}
+```
+
+#### What are the best drama's?
+
+```javascript
+discover: {
+    "with_genres": "18",
+    "sort_by": "vote_average.desc",
+    "vote_count.gte": "10"
+}
+```
+
+#### What are Liam Neeson's highest grossing rated 'R' movies?
+
+```javascript
+discover: {
+    "certification_country": "US",
+    "certification": "R",
+    "sort_by": "revenue.desc",
+    "with_cast": "3896"
+}
+```
