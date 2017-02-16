@@ -7,7 +7,6 @@
  */
 
 const request = require('request');
-const moment = require('moment');
 const NodeHelper = require('node_helper');
 require('datejs');
 
@@ -34,14 +33,14 @@ module.exports = NodeHelper.create({
         }
     },
 
-	/**
-	 * getData
-	 * Request data from the supplied URL and broadcast it to the MagicMirror module if it's received.
-	 */
+    /**
+     * getData
+     * Request data from the supplied URL and broadcast it to the MagicMirror module if it's received.
+     */
     getData: function() {
         var discover = this.config.discover;
-        discover['api_key'] = this.config.api_key
-        discover['language'] = (this.config.language ? this.config.language : 'en')
+        discover['api_key'] = this.config.api_key;
+        discover['language'] = (this.config.language ? this.config.language : 'en');
 
         if ('primary_release_date.gte' in discover)
             discover['primary_release_date.gte'] = Date.parse(discover['primary_release_date.gte']).toString("yyyy-MM-d");
