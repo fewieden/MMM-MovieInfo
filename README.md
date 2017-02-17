@@ -10,7 +10,6 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
   * npm
   * [request](https://www.npmjs.com/package/request)
   * [moment](https://www.npmjs.com/package/moment)
-  * [Datejs](https://www.npmjs.com/package/datejs)
 
 ## Installation
  1. Clone this repo into `~/MagicMirror/modules` directory.
@@ -30,16 +29,16 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
 
 ## Config Options
 
-| **Option**        | **Default**               | **Description**                                                                                     |
-| ----------------- | ------------------------- | --------------------------------------------------------------------------------------------------- |
-| `api_key`         | `false`                   | Get a free api_key [here](https://www.themoviedb.org/faq/api)                                       |
-| `discover`        | check below for examples  | Check the docs [here](https://www.themoviedb.org/documentation/api/discover) for more Info          |
-| `updateInterval`  | `10800000` (3 hours)      | How often new data should be fetched. (Changes only once per day)                                   |
-| `rotateInterval`  | `180000` (3 mins)         | How fast should be rotated between movies                                                           |
-| `genre`           | `true`                    | Display genres of movies.                                                                           |
-| `rating`          | `true`                    | Display rating of movies.                                                                           |
-| `plot`            | `true`                    | Display plot of movies.                                                                             |
-| `useLanguage`     | `false`                   | Use language from config instead of default english. WARNING: This can have missing data from api.  |
+| **Option** | **Default** | **Description** |
+| --- | --- | --- |
+| `api_key` | `false` | Get a free api_key [here](https://www.themoviedb.org/faq/api). |
+| `discover` | check below for examples | Check the docs [here](https://www.themoviedb.org/documentation/api/discover) for more Info. |
+| `updateInterval` | `10800000` (3 hours) | How often new data should be fetched. (Changes only once per day). |
+| `rotateInterval` | `180000` (3 mins) | How fast should be rotated between movies. |
+| `genre` | `true` | Display genres of movies. |
+| `rating` | `true` | Display rating of movies. |
+| `plot` | `true` | Display plot of movies. |
+| `useLanguage` | `false` | Use language from config instead of default english. WARNING: This can have missing data from api. |
 
 ### Discover Configuration Examples
 
@@ -49,8 +48,8 @@ Place the `discover` object in your config.
 
 ```javascript
 discover: {
-    "primary_release_date.gte": "now",
-    "primary_release_date.lte": "next month"
+    "primary_release_date.gte": "now",  //now or datestring
+    "primary_release_date.lte": "month" //day, week, month, quarter, year or datestring
 }
 ```
 
