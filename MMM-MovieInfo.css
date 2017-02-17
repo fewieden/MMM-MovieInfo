@@ -1,5 +1,5 @@
-.MMM-MovieInfo .wrapper{
-    width:185px;
+.MMM-MovieInfo .wrapper {
+    width: 185px;
     display: flex;
     align-content: center;
     flex-direction: column;
@@ -7,14 +7,15 @@
 
 .MMM-MovieInfo .poster {
     -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
     margin-bottom: 5px;
 }
 
 .MMM-MovieInfo .badge {
-    background-color: #FFF;
+    background-color: #fff;
     color: #000;
     border-radius: 3px;
-    padding: 0px 2px;
+    padding: 0 2px;
     margin: 2px;
 }
 
