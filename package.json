@@ -18,7 +18,6 @@
   "homepage": "https://github.com/fewieden/MMM-MovieInfo#readme",
   "dependencies": {
     "moment": "^2.17.1",
-    "request": "^2.74.0",
-    "datejs": "^0.0.2"
+    "request": "^2.74.0"
   }
 }
