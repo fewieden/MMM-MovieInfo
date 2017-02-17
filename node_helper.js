@@ -1,10 +1,13 @@
 /* Magic Mirror
  * Module: MMM-MovieInfo
  *
- * By fewieden https://github.com/fewieden/MovieInfo
+ * By fewieden https://github.com/fewieden/MMM-MovieInfo
  *
  * MIT Licensed.
  */
+
+/* eslint-env node */
+/* eslint-disable no-console */
 
 const request = require('request');
 const moment = require('moment');
@@ -13,9 +16,10 @@ const periods = ['day', 'week', 'month', 'quarter', 'year'];
 
 module.exports = NodeHelper.create({
 
-    start: function() {
-        console.log("Starting module: " + this.name);
+    start() {
+        console.log(`Starting module: ${this.name}`);
     },
+
 
     serialize: function(obj) {
         return '?'+Object.keys(obj).reduce((a, k) => {
@@ -24,12 +28,13 @@ module.exports = NodeHelper.create({
         },[]).join('&');
     },
 
-    socketNotificationReceived: function(notification, payload) {
-        if (notification === "CONFIG") {
-			this.config = payload;
-			setInterval(() => {
-				this.getData();
-			}, this.config.updateInterval);
+    socketNotificationReceived(notification, payload) {
+        if (notification === 'CONFIG') {
+            this.config = payload;
+            setInterval(() => {
+                this.getData();
+            }, this.config.updateInterval);
+
             this.getData();
         }
     },
@@ -39,7 +44,7 @@ module.exports = NodeHelper.create({
      * Request data from the supplied URL and broadcast it to the MagicMirror module if it's received.
      */
     getData: function() {
-        var discover = this.config.discover;
+        const discover = this.config.discover;
         discover['api_key'] = this.config.api_key;
         discover['language'] = (this.config.language ? this.config.language : 'en');
 
@@ -55,16 +60,15 @@ module.exports = NodeHelper.create({
             }
         }
 
-        var query = this.serialize(discover);
-        var options = {
+        const options = {
             url: 'https://api.themoviedb.org/3/discover/movie' + this.serialize(discover)
         };
 
         request(options, (error, response, body) => {
             if (response.statusCode === 200) {
-                this.sendSocketNotification("DATA", JSON.parse(body));
+                this.sendSocketNotification('DATA', JSON.parse(body));
             } else {
-                console.log("Error getting movie info " + response.statusCode);
+                console.log(`Error getting movie info ${response.statusCode}`);
             }
         });
     }
