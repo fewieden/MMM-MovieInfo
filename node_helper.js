@@ -12,6 +12,7 @@
 const request = require('request');
 const moment = require('moment');
 const NodeHelper = require('node_helper');
+
 const periods = ['day', 'week', 'month', 'quarter', 'year'];
 
 module.exports = NodeHelper.create({
@@ -21,11 +22,11 @@ module.exports = NodeHelper.create({
     },
 
 
-    serialize: function(obj) {
-        return '?'+Object.keys(obj).reduce((a, k) => {
+    serialize(obj) {
+        return `?${Object.keys(obj).reduce((a, k) => {
             a.push(`${k}=${encodeURIComponent(obj[k])}`);
             return a;
-        },[]).join('&');
+        }, []).join('&')}`;
     },
 
     socketNotificationReceived(notification, payload) {
@@ -43,17 +44,17 @@ module.exports = NodeHelper.create({
      * getData
      * Request data from the supplied URL and broadcast it to the MagicMirror module if it's received.
      */
-    getData: function() {
+    getData() {
         const discover = this.config.discover;
-        discover['api_key'] = this.config.api_key;
-        discover['language'] = (this.config.language ? this.config.language : 'en');
+        discover.api_key = this.config.api_key;
+        discover.language = (this.config.language ? this.config.language : 'en');
 
         if (Object.prototype.hasOwnProperty.call(discover, 'primary_release_date.gte')) {
-            discover['primary_release_date.gte'] = moment(discover['primary_release_date.gte'] === "now" ? {} : discover['primary_release_date.gte']).format('YYYY-MM-DD');
+            discover['primary_release_date.gte'] = moment(discover['primary_release_date.gte'] === 'now' ? {} : discover['primary_release_date.gte']).format('YYYY-MM-DD');
         }
 
         if (Object.prototype.hasOwnProperty.call(discover, 'primary_release_date.lte')) {
-            if(periods.includes(discover['primary_release_date.lte'])) {
+            if (periods.includes(discover['primary_release_date.lte'])) {
                 discover['primary_release_date.lte'] = moment().add(1, `${discover['primary_release_date.lte']}s`).format('YYYY-MM-DD');
             } else {
                 discover['primary_release_date.lte'] = moment(discover['primary_release_date.lte']).format('YYYY-MM-DD');
@@ -61,7 +62,7 @@ module.exports = NodeHelper.create({
         }
 
         const options = {
-            url: 'https://api.themoviedb.org/3/discover/movie' + this.serialize(discover)
+            url: `https://api.themoviedb.org/3/discover/movie${this.serialize(discover)}`
         };
 
         request(options, (error, response, body) => {
