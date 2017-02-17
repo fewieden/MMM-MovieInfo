@@ -36,7 +36,7 @@ Upcoming Movie Info Module for MagicMirror<sup>2</sup>
 | **Option** | **Default** | **Description** |
 | --- | --- | --- |
 | `api_key` | `false` | Get a free api_key [here](https://www.themoviedb.org/faq/api). |
-| `discover` | check below for examples | Check the docs [here](https://www.themoviedb.org/documentation/api/discover) for more Info. |
+| `discover` | check below for examples | Check the [docs](https://www.themoviedb.org/documentation/api/discover) for more Info. |
 | `updateInterval` | `10800000` (3 hours) | How often new data should be fetched. (Changes only once per day). |
 | `rotateInterval` | `180000` (3 mins) | How fast should be rotated between movies. |
 | `genre` | `true` | Display genres of movies. |
@@ -52,8 +52,8 @@ Place the `discover` object in your config.
 
 ```javascript
 discover: {
-    "primary_release_date.gte": "now",  //now or datestring
-    "primary_release_date.lte": "month" //day, week, month, quarter, year or datestring
+    "primary_release_date.gte": "now",  //now
+    "primary_release_date.lte": "month" //day, week, month, quarter or year
 }
 ```
 
@@ -65,8 +65,6 @@ discover: {
     "primary_release_date.lte": "2017-03-16"
 }
 ```
-
-Check the [docs for Datejs](https://github.com/datejs/Datejs) to check what kind of time like queries you can use
 
 #### What are the most popular movies?
 
