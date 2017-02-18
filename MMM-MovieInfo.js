@@ -88,9 +88,9 @@ Module.register('MMM-MovieInfo', {
             wrapper.appendChild(title);
 
             const poster = document.createElement('img');
+            const posterPath = this.upcoming.results[this.index].poster_path;
             poster.classList.add('poster');
-            poster.src = `https://image.tmdb.org/t/p/w185_and_h278_best\
-                v2${this.upcoming.results[this.index].poster_path}`;
+            poster.src = `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${posterPath}`;
             wrapper.appendChild(poster);
 
             if (this.config.genre) {
