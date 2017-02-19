@@ -50,14 +50,17 @@ module.exports = NodeHelper.create({
         discover.language = (this.config.language ? this.config.language : 'en');
 
         if (Object.prototype.hasOwnProperty.call(discover, 'primary_release_date.gte')) {
-            discover['primary_release_date.gte'] = moment(discover['primary_release_date.gte'] === 'now' ? {} : discover['primary_release_date.gte']).format('YYYY-MM-DD');
+            discover['primary_release_date.gte'] = moment(discover['primary_release_date.gte'] === 'now' ?
+                {} : discover['primary_release_date.gte']).format('YYYY-MM-DD');
         }
 
         if (Object.prototype.hasOwnProperty.call(discover, 'primary_release_date.lte')) {
             if (periods.includes(discover['primary_release_date.lte'])) {
-                discover['primary_release_date.lte'] = moment().add(1, `${discover['primary_release_date.lte']}s`).format('YYYY-MM-DD');
+                discover['primary_release_date.lte'] = moment()
+                    .add(1, `${discover['primary_release_date.lte']}s`).format('YYYY-MM-DD');
             } else {
-                discover['primary_release_date.lte'] = moment(discover['primary_release_date.lte']).format('YYYY-MM-DD');
+                discover['primary_release_date.lte'] = moment(discover['primary_release_date.lte'])
+                    .format('YYYY-MM-DD');
             }
         }
 
