@@ -19,7 +19,8 @@ Module.register('MMM-MovieInfo', {
         genre: true,
         rating: true,
         plot: true,
-        useLanguage: false
+        useLanguage: false,
+        discover: {}
     },
 
     start() {
@@ -82,15 +83,16 @@ Module.register('MMM-MovieInfo', {
             }
             wrapper.classList.add('wrapper', 'align-left');
 
+            const movie = this.upcoming.results[this.index];
+
             const title = document.createElement('div');
             title.classList.add('bright', 'small');
-            title.innerHTML = this.upcoming.results[this.index].title;
+            title.innerHTML = movie.title;
             wrapper.appendChild(title);
 
             const poster = document.createElement('img');
             poster.classList.add('poster');
-            poster.src = `https://image.tmdb.org/t/p/w185_and_h278_best\
-                v2${this.upcoming.results[this.index].poster_path}`;
+            poster.src = `https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.posterPath}`;
             wrapper.appendChild(poster);
 
             if (this.config.genre) {
@@ -99,13 +101,12 @@ Module.register('MMM-MovieInfo', {
                 genrespan.classList.add('xsmall', 'float-left');
                 genrespan.innerHTML = `${this.translate('GENRES')}: `;
                 genres.appendChild(genrespan);
-                const max = Math.min(3, this.upcoming.results[this.index].genre_ids.length);
+                const max = Math.min(3, movie.genre_ids.length);
                 for (let i = 0; i < max; i += 1) {
-                    if (Object.prototype.hasOwnProperty.call(this.genres,
-                            this.upcoming.results[this.index].genre_ids[i])) {
+                    if (Object.prototype.hasOwnProperty.call(this.genres, movie.genre_ids[i])) {
                         const genre = document.createElement('span');
                         genre.classList.add('xsmall', 'thin', 'badge', 'float-left');
-                        genre.innerHTML = this.genres[this.upcoming.results[this.index].genre_ids[i]];
+                        genre.innerHTML = this.genres[movie.genre_ids[i]];
                         genres.appendChild(genre);
                     }
                 }
@@ -119,7 +120,7 @@ Module.register('MMM-MovieInfo', {
                 star.classList.add('fa', 'fa-star-o');
                 stars.appendChild(star);
                 const starspan = document.createElement('span');
-                starspan.innerHTML = ` ${this.upcoming.results[this.index].vote_average}`;
+                starspan.innerHTML = ` ${movie.vote_average}`;
                 stars.appendChild(starspan);
                 wrapper.appendChild(stars);
             }
@@ -127,9 +128,8 @@ Module.register('MMM-MovieInfo', {
             if (this.config.plot) {
                 const plot = document.createElement('div');
                 plot.classList.add('xsmall', 'plot');
-                plot.innerHTML = this.upcoming.results[this.index].overview.length > 250 ?
-                    `${this.upcoming.results[this.index].overview.substring(0, 248)}&#8230;` :
-                    this.upcoming.results[this.index].overview;
+                plot.innerHTML = movie.overview.length > 250 ?
+                    `${movie.overview.substring(0, 248)}&#8230;` : movie.overview;
                 wrapper.appendChild(plot);
             }
         }
